@@ -84,3 +84,21 @@ main {
   #title-screen .hidden {
     display: none; }
 
+/****************\
+****** Game ******
+\****************/
+#game__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: white; }
+
+.game {
+  display: grid;
+  grid-template-columns: repeat(21, 1fr);
+  grid-template-rows: repeat(21, 1fr);
+  width: 100vmin;
+  height: 100vmin;
+  background: url(../assets/img/Sky-Background.png);
+  background-size: contain; }

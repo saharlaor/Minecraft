@@ -99,3 +99,21 @@ main {
     }
 }
 
+/****************\
+****** Game ******
+\****************/
+#game__container {
+    @include flex-center;
+    width: 100%;
+    background: rgba(255, 255, 255, 70%);
+}
+
+.game {
+    display: grid;
+    grid-template-columns: repeat(21, 1fr);
+    grid-template-rows: repeat(21, 1fr);
+    width: 100vmin;
+    height: 100vmin;
+    background: url(../assets/img/Sky-Background.png);
+    background-size: contain;
+}
