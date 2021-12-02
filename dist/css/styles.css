@@ -117,3 +117,6 @@ main {
 
 .wood {
   background: url(../assets/textures/Wood.png) no-repeat center center/contain; }
+
+.empty {
+  background: transparent; }

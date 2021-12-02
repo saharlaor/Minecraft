@@ -118,9 +118,12 @@ main {
     background-size: contain;
 }
 
+.block {
+}
+
 $blockTypes: (
     "dirt": Dirt,
-    "grass": Grass,
+    "grass": GrassBlock,
     "leaves": Leaves,
     "stone": Stone,
     "wood": Wood,
@@ -134,4 +137,8 @@ $blockTypes: (
             center /
             contain;
     }
+}
+
+.empty {
+    background: transparent;
 }
