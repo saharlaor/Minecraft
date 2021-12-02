@@ -102,3 +102,18 @@ main {
   height: 100vmin;
   background: url(../assets/img/Sky-Background.png);
   background-size: contain; }
+
+.dirt {
+  background: url(../assets/textures/Dirt.png) no-repeat center center/contain; }
+
+.grass {
+  background: url(../assets/textures/GrassBlock.png) no-repeat center center/contain; }
+
+.leaves {
+  background: url(../assets/textures/Leaves.png) no-repeat center center/contain; }
+
+.stone {
+  background: url(../assets/textures/Stone.png) no-repeat center center/contain; }
+
+.wood {
+  background: url(../assets/textures/Wood.png) no-repeat center center/contain; }

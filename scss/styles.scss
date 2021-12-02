@@ -117,3 +117,21 @@ main {
     background: url(../assets/img/Sky-Background.png);
     background-size: contain;
 }
+
+$blockTypes: (
+    "dirt": Dirt,
+    "grass": Grass,
+    "leaves": Leaves,
+    "stone": Stone,
+    "wood": Wood,
+);
+
+@each $key, $type in $blockTypes {
+    .#{$key} {
+        background: url(../assets/textures/#{$type}.png)
+            no-repeat
+            center
+            center /
+            contain;
+    }
+}
