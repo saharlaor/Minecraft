@@ -9,7 +9,7 @@ const BLOCK_TYPES = {
 
 export const Block = class {
     constructor(blockType, x, y, htmlEl) {
-        this.blockType = blockType;
+        this.blockType = BLOCK_TYPES[blockType];
         this.x = x;
         this.y = y;
         this.htmlEl = htmlEl;

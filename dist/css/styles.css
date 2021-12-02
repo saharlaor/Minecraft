@@ -96,12 +96,15 @@ main {
 
 .game {
   display: grid;
-  grid-template-columns: repeat(21, 1fr);
-  grid-template-rows: repeat(21, 1fr);
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);
   width: 100vmin;
   height: 100vmin;
   background: url(../assets/img/Sky-Background.png);
   background-size: contain; }
+
+.block {
+  margin: -0.4px; }
 
 .dirt {
   background: url(../assets/textures/Dirt.png) no-repeat center center/contain; }
