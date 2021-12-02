@@ -1,3 +1,6 @@
+$sidebar-background: #896041;
+$button-color: #858585;
+
 @mixin flex-center {
     display: flex;
     justify-content: center;
@@ -25,6 +28,51 @@ main {
     left: 0;
 }
 
+.mc-btn {
+    padding: 0.7rem 2.5rem;
+    font-family: "Minecraft";
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    background: #858585;
+    box-shadow: inset 2px 2px 0 #a1a1a1, inset -4px -4px 0 #595959;
+    &:hover {
+        cursor: pointer;
+        box-shadow: inset 1px 1px 0 #a1a1a1, inset -2px -3px 0 #595959;
+    }
+}
+
+/*******************\
+****** Sidebar ******
+\*******************/
+#sidebar {
+    @include flex-center;
+    flex-direction: column;
+    gap: 5%;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 200px;
+    float: right;
+    background-color: $sidebar-background;
+}
+
+.tool {
+    @include flex-center;
+    padding: 1rem;
+    img {
+        height: 80px;
+    }
+}
+
+.inventory {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    margin-top: 2rem;
+    padding: 0;
+}
+
 /************************\
 ****** Title Screen ******
 \************************/
@@ -45,20 +93,6 @@ main {
         width: 600px;
         background: url(../assets/img/Minecraft-Logo.png) no-repeat center
             center / cover;
-    }
-}
-
-.start-btn {
-    padding: 0.7rem 2.5rem;
-    font-family: "Minecraft";
-    font-size: 2.5rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    background: #858585;
-    box-shadow: inset 2px 2px 0 #a1a1a1, inset -4px -4px 0 #595959;
-    &:hover {
-        cursor: pointer;
-        box-shadow: inset 1px 1px 0 #a1a1a1, inset -2px -3px 0 #595959;
     }
     .hidden {
         display: none;
