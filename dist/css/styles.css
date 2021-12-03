@@ -100,8 +100,9 @@ main {
   display: grid;
   grid-template-columns: repeat(20, 1fr);
   grid-template-rows: repeat(20, 1fr);
-  width: 100vmin;
   height: 100vmin;
+  width: 100vmin;
+  max-height: calc(100vw - 200px);
   background: url(../assets/img/Sky-Background.png);
   background-size: contain; }
 
