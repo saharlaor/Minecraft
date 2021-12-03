@@ -31,18 +31,18 @@ const blockTypeEnum = {
     4: "stone",
     5: "wood",
 };
-
-function getTool() {
-    console.log(getActiveTool());
-}
-
 const gameMatrix = Array.from(Array(20), () => Array(20));
 const worldEl = document.querySelector(".game");
-const tools = [...document.querySelectorAll("[data-tool]")].map(
-    (el) => new Tool(el.dataset.tool)
+const tools = [...document.querySelectorAll("[data-tool]")].reduce(
+    (res, el) => {
+        const toolName = el.dataset.tool;
+        res[toolName] = new Tool(toolName);
+        return res;
+    },
+    {}
 );
 
-tools.forEach((tool) =>
+Object.values(tools).forEach((tool) =>
     tool.htmlEl.addEventListener("click", (_) => setActiveTool(tool))
 );
 
@@ -61,6 +61,7 @@ function generateWorld() {
                 y,
                 tempEl
             );
+            // gameMatrix[y][x].addEventListener("click", (e) => {});
             worldEl.append(tempEl);
         }
     }
