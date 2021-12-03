@@ -1,4 +1,4 @@
-const BLOCK_TYPES = {
+export const BLOCK_TYPES = {
   dirt: "dirt",
   empty: "empty",
   grass: "grass",
@@ -26,11 +26,6 @@ export const Block = class {
   // Setters
   set type(newType) {
     this.blockType = newType;
-    this.htmlEl.classList.forEach((className) => {
-      if (className != "block") {
-        this.htmlEl.classList.remove(className);
-      }
-    });
-    this.htmlEl.classList.remove(newType);
+    this.htmlEl.dataset.contents = newType;
   }
 };

@@ -1,9 +1,10 @@
 const TOOL_USAGE = {
   pickaxe: ["stone"],
-  axe: ["log", "leaves"],
+  axe: ["wood", "leaves"],
   shovel: ["dirt", "grass"],
   inventory: ["empty"],
 };
+const ACTIVE_TOOL_CLASS = "active";
 
 let activeTool = null;
 const ACTIVE_TOOL_CLASS = "active";

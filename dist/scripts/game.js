@@ -1,5 +1,9 @@
-import { Block } from "./block.js";
-import { Tool, setActiveTool, getActiveTool } from "./tools.js";
+import { Block, BLOCK_TYPES } from "./block.js";
+import {
+  Tool,
+  setActiveTool,
+  getActiveTool,
+} from "./tools.js";
 
 const basicWorld = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -31,6 +35,12 @@ const blockTypeEnum = {
   4: "stone",
   5: "wood",
 };
+const toolTypeEnum = {
+  pickaxe: "pickaxe",
+  axe: "axe",
+  shovel: "shovel",
+  inventory: "inventory",
+};
 const gameMatrix = Array.from(Array(20), () => Array(20));
 const worldEl = document.querySelector(".game");
 const tools = [...document.querySelectorAll("[data-tool]")].reduce(
@@ -51,20 +61,29 @@ function gameStart() {
 }
 
 function generateWorld() {
-    for (let y = 0; y < gameMatrix.length; y++) {
-        for (let x = 0; x < gameMatrix[y].length; x++) {
-            let tempEl = document.createElement("div");
-            tempEl.classList.add("block", blockTypeEnum[basicWorld[y][x]]);
-            gameMatrix[y][x] = new Block(
-                blockTypeEnum[basicWorld[y][x]],
-                x,
-                y,
-                tempEl
-            );
-            // gameMatrix[y][x].addEventListener("click", (e) => {});
-            worldEl.append(tempEl);
+  for (let y = 0; y < gameMatrix.length; y++) {
+    for (let x = 0; x < gameMatrix[y].length; x++) {
+      const blockType = blockTypeEnum[basicWorld[y][x]];
+      const tempEl = document.createElement("div");
+      tempEl.classList.add("block");
+      tempEl.setAttribute("data-contents", blockTypeEnum[basicWorld[y][x]]);
+      gameMatrix[y][x] = new Block(blockType, x, y, tempEl);
+      tempEl.addEventListener("click", (e) => {
+        const activeTool = getActiveTool();
+        if (activeTool) {
+          if (activeTool.toolUsage.includes(blockType)) {
+            if (activeTool.toolType === toolTypeEnum.inventory) {
+              tempEl.type = getInventory();
+            } else {
+              gameMatrix[y][x].type = BLOCK_TYPES.empty;
+            }
+          } else {
+          }
         }
+      });
+      worldEl.append(tempEl);
     }
+  }
 }
 
 gameStart();
