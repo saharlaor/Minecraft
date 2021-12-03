@@ -31,9 +31,10 @@ body {
 }
 
 main {
-  width: calc(100% - 200px);
   position: absolute;
   left: 0;
+  width: calc(100% - 200px);
+  overflow-x: hidden;
 }
 
 .mc-btn {
@@ -103,7 +104,6 @@ main {
   @include flex-center;
   flex-direction: column;
   gap: 3rem;
-  display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -111,14 +111,16 @@ main {
   width: 100%;
   background: url(../assets/img/Title-Menu-Background.png);
   background-repeat: repeat;
+  &.hidden {
+    transform: translateY(-125vh) scale(1.5);
+    opacity: 0;
+    transition: all 1.5s 0.1s ease-in;
+  }
   h1 {
     height: 120px;
     width: 600px;
     background: url(../assets/img/Minecraft-Logo.png) no-repeat center center /
       cover;
-  }
-  .hidden {
-    display: none;
   }
 }
 
