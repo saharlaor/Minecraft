@@ -54,7 +54,7 @@ main {
   .tool img {
     height: 80px; }
   .tool.active {
-    background: blue; }
+    background: #7e86bf; }
 
 .inventory {
   display: inline-block;

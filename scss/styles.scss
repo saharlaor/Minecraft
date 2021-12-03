@@ -1,148 +1,149 @@
 $sidebar-background: #896041;
 $button-color: #858585;
+$button-color-active: #7e86bf;
 
 @mixin flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 * {
-    padding: 0px;
-    margin: 0px;
-    box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
 }
 
 body {
-    @include flex-center;
-    position: relative;
-    height: 100vh;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
+  @include flex-center;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
 }
 
 main {
-    width: calc(100% - 200px);
-    position: absolute;
-    left: 0;
+  width: calc(100% - 200px);
+  position: absolute;
+  left: 0;
 }
 
 .mc-btn {
-    padding: 0.7rem 2.5rem;
-    font-family: "Minecraft";
-    font-size: 2.5rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    background: #858585;
-    box-shadow: inset 2px 2px 0 #a1a1a1, inset -4px -4px 0 #595959;
-    &:hover {
-        cursor: pointer;
-        box-shadow: inset 1px 1px 0 #a1a1a1, inset -2px -3px 0 #595959;
-    }
+  padding: 0.7rem 2.5rem;
+  font-family: "Minecraft";
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  background: #858585;
+  box-shadow: inset 2px 2px 0 #a1a1a1, inset -4px -4px 0 #595959;
+  &:hover {
+    cursor: pointer;
+    box-shadow: inset 1px 1px 0 #a1a1a1, inset -2px -3px 0 #595959;
+  }
 }
 
 /*******************\
 ****** Sidebar ******
 \*******************/
 #sidebar {
-    @include flex-center;
-    flex-direction: column;
-    gap: 5%;
-    position: absolute;
-    right: 0;
-    height: 100%;
-    width: 200px;
-    float: right;
-    background-color: $sidebar-background;
+  @include flex-center;
+  flex-direction: column;
+  gap: 5%;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 200px;
+  float: right;
+  background-color: $sidebar-background;
 }
 
 .tool {
-    @include flex-center;
-    padding: 1rem;
-    img {
-        height: 80px;
-    }
-    &.active {
-        background: blue;
-    }
+  @include flex-center;
+  padding: 1rem;
+  img {
+    height: 80px;
+  }
+  &.active {
+    background: $button-color-active;
+  }
 }
 
 .inventory {
-    display: inline-block;
-    height: 50px;
-    width: 50px;
-    margin-top: 2rem;
-    padding: 0;
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  margin-top: 2rem;
+  padding: 0;
 }
 
 /************************\
 ****** Title Screen ******
 \************************/
 #title-screen {
-    @include flex-center;
-    flex-direction: column;
-    gap: 3rem;
-    // display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: url(../assets/img/Title-Menu-Background.png);
-    background-repeat: repeat;
-    h1 {
-        height: 120px;
-        width: 600px;
-        background: url(../assets/img/Minecraft-Logo.png) no-repeat center
-            center / cover;
-    }
-    .hidden {
-        display: none;
-    }
+  @include flex-center;
+  flex-direction: column;
+  gap: 3rem;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: url(../assets/img/Title-Menu-Background.png);
+  background-repeat: repeat;
+  h1 {
+    height: 120px;
+    width: 600px;
+    background: url(../assets/img/Minecraft-Logo.png) no-repeat center center /
+      cover;
+  }
+  .hidden {
+    display: none;
+  }
 }
 
 /****************\
 ****** Game ******
 \****************/
 #game__container {
-    @include flex-center;
-    width: 100%;
-    background: rgba(255, 255, 255, 70%);
+  @include flex-center;
+  width: 100%;
+  background: rgba(255, 255, 255, 70%);
 }
 
 .game {
-    display: grid;
-    grid-template-columns: repeat(20, 1fr);
-    grid-template-rows: repeat(20, 1fr);
-    width: 100vmin;
-    height: 100vmin;
-    background: url(../assets/img/Sky-Background.png);
-    background-size: contain;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  width: 100vmin;
+  height: 100vmin;
+  background: url(../assets/img/Sky-Background.png);
+  background-size: contain;
 }
 
 .block {
-    margin: -0.4px;
+  margin: -0.4px;
 }
 
 $blockTypes: (
-    "dirt": Dirt,
-    "grass": GrassBlock,
-    "leaves": Leaves,
-    "stone": Stone,
-    "wood": Wood,
+  "dirt": Dirt,
+  "grass": GrassBlock,
+  "leaves": Leaves,
+  "stone": Stone,
+  "wood": Wood,
 );
 
 @each $key, $type in $blockTypes {
-    .#{$key} {
-        background: url(../assets/textures/#{$type}.png)
-            no-repeat
-            center
-            center /
-            contain;
-    }
+  .#{$key} {
+    background: url(../assets/textures/#{$type}.png)
+      no-repeat
+      center
+      center /
+      contain;
+  }
 }
 
 .empty {
-    background: transparent;
+  background: transparent;
 }
