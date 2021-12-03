@@ -68,10 +68,22 @@ const tools = [...document.querySelectorAll("[data-tool]")].reduce(
   {}
 );
 
+// Event listeners for tool clicks
 Object.values(tools).forEach((tool) =>
   tool.htmlEl.addEventListener("click", (_) => setActiveTool(tool))
 );
 
+/**
+ * Add a block with given coordinates to the world matrix.
+ *
+ * Create new div, find the type of block from given x and y coordinates
+ * Create new block object and fill it with those.
+ *
+ * @since  1.0.0
+ *
+ * @param {Number}   x           x coordinate.
+ * @param {Number}   y           y coordinate.
+ **/
 function appendNewBlock(x, y) {
   const blockType = BLOCK_TYPE_ENUM[basicWorld[y][x]];
   const tempEl = document.createElement("div");
@@ -80,16 +92,26 @@ function appendNewBlock(x, y) {
   gameMatrix[y][x] = new Block(blockType, x, y, tempEl);
 }
 
-function blockClick(x, y) {
+/**
+ * function for event listener of a single block object.
+ *
+ * Change the type of the clicked block if the click was valid,
+ * according to the current active tool and type of the object.
+ *
+ * @since  1.0.0
+ *
+ * @param {Block}   block           The clicked block.
+ **/
+function blockClick(block) {
   const activeTool = getActiveTool();
   if (activeTool) {
-    if (activeTool.toolUsage.includes(gameMatrix[y][x].type)) {
+    if (activeTool.toolUsage.includes(block.type)) {
       if (activeTool.toolType === TOOL_TYPE_ENUM.inventory) {
-        gameMatrix[y][x].type = getInventory();
+        block.type = getInventory();
         setInventory(BLOCK_TYPES.empty);
       } else {
-        setInventory(gameMatrix[y][x].type);
-        gameMatrix[y][x].type = BLOCK_TYPES.empty;
+        setInventory(block.type);
+        block.type = BLOCK_TYPES.empty;
       }
     } else {
       activeTool.indicateError();
@@ -97,18 +119,34 @@ function blockClick(x, y) {
   }
 }
 
+/**
+ * Generate a new world of blocks from an abstract representation.
+ *
+ * Iterate through the game matrix's indices and fill them with a new block
+ * then append the html element of the block into game html.
+ *
+ * @since  1.0.0
+ **/
 function generateWorld() {
   for (let y = 0; y < gameMatrix.length; y++) {
     for (let x = 0; x < gameMatrix[y].length; x++) {
       appendNewBlock(x, y);
       gameMatrix[y][x].htmlEl.addEventListener("click", (_) => {
-        blockClick(x, y);
+        blockClick(gameMatrix[y][x]);
       });
       worldEl.append(gameMatrix[y][x].htmlEl);
     }
   }
 }
 
+/**
+ * Setup the game.
+ *
+ * Start a new game, generate the world's elements and matrix,
+ * setup the title screen.
+ *
+ * @since  1.0.0
+ **/
 function gameStart() {
   generateWorld(); // Function that fills matrix array with block Object
   document.querySelector("#start-btn").addEventListener("click", (e) => {
