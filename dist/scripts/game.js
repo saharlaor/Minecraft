@@ -72,41 +72,52 @@ Object.values(tools).forEach((tool) =>
   tool.htmlEl.addEventListener("click", (_) => setActiveTool(tool))
 );
 
-function gameStart() {
-  generateWorld(); // Function that fills matrix array with block Object
-  document.querySelector("#start-btn").addEventListener("click", (e) => {
-    document.querySelector("#title-screen").classList.add("hidden");
-  });
+function appendNewBlock(x, y) {
+  const blockType = BLOCK_TYPE_ENUM[basicWorld[y][x]];
+  const tempEl = document.createElement("div");
+  tempEl.classList.add("block");
+  tempEl.setAttribute("data-contents", BLOCK_TYPE_ENUM[basicWorld[y][x]]);
+  gameMatrix[y][x] = new Block(blockType, x, y, tempEl);
+}
+
+function blockClick(x, y) {
+  const activeTool = getActiveTool();
+  if (activeTool) {
+    if (activeTool.toolUsage.includes(gameMatrix[y][x].type)) {
+      if (activeTool.toolType === TOOL_TYPE_ENUM.inventory) {
+        gameMatrix[y][x].type = getInventory();
+        setInventory(BLOCK_TYPES.empty);
+      } else {
+        setInventory(gameMatrix[y][x].type);
+        gameMatrix[y][x].type = BLOCK_TYPES.empty;
+      }
+    } else {
+      activeTool.indicateError();
+    }
+  }
 }
 
 function generateWorld() {
   for (let y = 0; y < gameMatrix.length; y++) {
     for (let x = 0; x < gameMatrix[y].length; x++) {
-      const blockType = BLOCK_TYPE_ENUM[basicWorld[y][x]];
-      const tempEl = document.createElement("div");
-      tempEl.classList.add("block");
-      tempEl.setAttribute("data-contents", BLOCK_TYPE_ENUM[basicWorld[y][x]]);
-      gameMatrix[y][x] = new Block(blockType, x, y, tempEl);
-      tempEl.addEventListener("click", (e) => {
-        const activeTool = getActiveTool();
-        if (activeTool) {
-          if (activeTool.toolUsage.includes(gameMatrix[y][x].type)) {
-            if (activeTool.toolType === TOOL_TYPE_ENUM.inventory) {
-              gameMatrix[y][x].type = getInventory();
-              setInventory(BLOCK_TYPES.empty);
-            } else {
-              setInventory(gameMatrix[y][x].type);
-              gameMatrix[y][x].type = BLOCK_TYPES.empty;
-            }
-          } else {
-            activeTool.indicateError();
-          }
-        }
+      appendNewBlock(x, y);
+      gameMatrix[y][x].htmlEl.addEventListener("click", (_) => {
+        blockClick(x, y);
       });
-      worldEl.append(tempEl);
+      worldEl.append(gameMatrix[y][x].htmlEl);
     }
   }
 }
 
+function gameStart() {
+  generateWorld(); // Function that fills matrix array with block Object
+  document.querySelector("#start-btn").addEventListener("click", (e) => {
+    const titleScreenEl = document.querySelector("#title-screen");
+    titleScreenEl.classList.add("hidden");
+    setTimeout(() => {
+      titleScreenEl.style.display = "none";
+    }, 800);
+  });
+}
+
 gameStart();
-console.log(gameMatrix);

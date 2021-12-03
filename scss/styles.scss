@@ -35,7 +35,7 @@ main {
   position: absolute;
   left: 0;
   width: calc(100% - 200px);
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .mc-btn {
@@ -119,9 +119,9 @@ main {
   background: url(../assets/img/Title-Menu-Background.png);
   background-repeat: repeat;
   &.hidden {
-    transform: translateY(-125vh) scale(1.5);
+    transform: scale(25);
     opacity: 0;
-    transition: all 1.5s 0.1s ease-in;
+    transition: all 0.7s 0.1s ease-in;
   }
   h1 {
     height: 120px;
