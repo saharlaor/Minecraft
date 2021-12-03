@@ -18,12 +18,21 @@ export class Tool {
     this.htmlEl = document.querySelector(`[data-tool=${toolType}]`);
   }
 
+  // Getters
   get toolType() {
     return this.type;
   }
 
   get toolUsage() {
     return TOOL_USAGE[this.type];
+  }
+
+  // Methods
+  indicateError() {
+    this.htmlEl.classList.add("error");
+    setTimeout(() => {
+      this.htmlEl.classList.remove("error");
+    }, 200);
   }
 
   activate() {

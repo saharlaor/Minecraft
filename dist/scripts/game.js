@@ -99,6 +99,7 @@ function generateWorld() {
               gameMatrix[y][x].type = BLOCK_TYPES.empty;
             }
           } else {
+            activeTool.indicateError();
           }
         }
       });

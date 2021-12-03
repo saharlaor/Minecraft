@@ -55,6 +55,8 @@ main {
     height: 80px; }
   .tool.active {
     background: #7e86bf; }
+  .tool.error {
+    background: #b66; }
 
 .inventory {
   display: inline-block;
@@ -74,6 +76,8 @@ main {
     background: url(../assets/textures/Wood.png) no-repeat center center/contain; }
   .inventory.active {
     box-shadow: inset 2px 1px 0 #abd, inset -2px -3px 0 #78c; }
+  .inventory.error {
+    box-shadow: inset 2px 1px 0 #d99, inset -2px -3px 0 #b66; }
 
 /************************\
 ****** Title Screen ******
