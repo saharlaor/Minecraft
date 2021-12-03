@@ -1,4 +1,5 @@
 import { Block } from "./block.js";
+import { Tool, setActiveTool, getActiveTool } from "./tools.js";
 
 const basicWorld = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -30,12 +31,23 @@ const blockTypeEnum = {
     4: "stone",
     5: "wood",
 };
+
+function getTool() {
+    console.log(getActiveTool());
+}
+
 const gameMatrix = Array.from(Array(20), () => Array(20));
 const worldEl = document.querySelector(".game");
+const tools = [...document.querySelectorAll("[data-tool]")].map(
+    (el) => new Tool(el.dataset.tool)
+);
+
+tools.forEach((tool) =>
+    tool.htmlEl.addEventListener("click", (_) => setActiveTool(tool))
+);
 
 function gameStart() {
     generateWorld(); // Function that fills matrix array with block Object
-    drawWorld(); // Draws the world accroding to the generated matrix
 }
 
 function generateWorld() {
@@ -54,5 +66,5 @@ function generateWorld() {
     }
 }
 
-generateWorld();
+gameStart();
 console.log(gameMatrix);

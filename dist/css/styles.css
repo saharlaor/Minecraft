@@ -53,6 +53,8 @@ main {
   padding: 1rem; }
   .tool img {
     height: 80px; }
+  .tool.active {
+    background: blue; }
 
 .inventory {
   display: inline-block;

@@ -63,6 +63,9 @@ main {
     img {
         height: 80px;
     }
+    &.active {
+        background: blue;
+    }
 }
 
 .inventory {
