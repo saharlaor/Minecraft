@@ -7,11 +7,10 @@ const TOOL_USAGE = {
 const ACTIVE_TOOL_CLASS = "active";
 
 let activeTool = null;
-const ACTIVE_TOOL_CLASS = "active";
-// const toolEls = Array.from(document.querySelectorAll("[data-tool]").map(el => e.dataset.tool), type => {
-//     type: type,
-//     htmlEl: ,
-// };
+let currentInventory = {
+  htmlEl: document.querySelector(`[data-tool=inventory]`),
+  contents: "empty",
+};
 
 export class Tool {
   constructor(toolType) {
@@ -46,4 +45,13 @@ export function setActiveTool(active) {
     activeTool = active;
     activeTool.activate();
   }
+}
+
+export function getInventory() {
+  return currentInventory.contents;
+}
+
+export function setInventory(blockType) {
+  currentInventory.contents = blockType;
+  currentInventory.htmlEl.dataset.contents = blockType;
 }

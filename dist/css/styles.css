@@ -10,7 +10,6 @@ body {
   position: relative;
   height: 100vh;
   width: 100vw;
-  height: 100vh;
   margin: 0; }
 
 main {
@@ -62,6 +61,16 @@ main {
   width: 50px;
   margin-top: 2rem;
   padding: 0; }
+  .inventory[data-contents="dirt"] {
+    background: url(../assets/textures/Dirt.png) no-repeat center center/contain; }
+  .inventory[data-contents="grass"] {
+    background: url(../assets/textures/GrassBlock.png) no-repeat center center/contain; }
+  .inventory[data-contents="leaves"] {
+    background: url(../assets/textures/Leaves.png) no-repeat center center/contain; }
+  .inventory[data-contents="stone"] {
+    background: url(../assets/textures/Stone.png) no-repeat center center/contain; }
+  .inventory[data-contents="wood"] {
+    background: url(../assets/textures/Wood.png) no-repeat center center/contain; }
 
 /************************\
 ****** Title Screen ******
@@ -72,6 +81,7 @@ main {
   align-items: center;
   flex-direction: column;
   gap: 3rem;
+  display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -108,21 +118,17 @@ main {
 
 .block {
   margin: -0.4px; }
-
-.dirt {
-  background: url(../assets/textures/Dirt.png) no-repeat center center/contain; }
-
-.grass {
-  background: url(../assets/textures/GrassBlock.png) no-repeat center center/contain; }
-
-.leaves {
-  background: url(../assets/textures/Leaves.png) no-repeat center center/contain; }
-
-.stone {
-  background: url(../assets/textures/Stone.png) no-repeat center center/contain; }
-
-.wood {
-  background: url(../assets/textures/Wood.png) no-repeat center center/contain; }
-
-.empty {
-  background: transparent; }
+  .block:hover {
+    border: 1px solid #fff;
+    border-right-width: 2px;
+    cursor: pointer; }
+  .block[data-contents="dirt"] {
+    background: url(../assets/textures/Dirt.png) no-repeat center center/contain; }
+  .block[data-contents="grass"] {
+    background: url(../assets/textures/GrassBlock.png) no-repeat center center/contain; }
+  .block[data-contents="leaves"] {
+    background: url(../assets/textures/Leaves.png) no-repeat center center/contain; }
+  .block[data-contents="stone"] {
+    background: url(../assets/textures/Stone.png) no-repeat center center/contain; }
+  .block[data-contents="wood"] {
+    background: url(../assets/textures/Wood.png) no-repeat center center/contain; }

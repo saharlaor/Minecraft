@@ -82,6 +82,15 @@ main {
   width: 50px;
   margin-top: 2rem;
   padding: 0;
+  @each $key, $type in $blockTypes {
+    &[data-contents="#{$key}"] {
+      background: url(../assets/textures/#{$type}.png)
+        no-repeat
+        center
+        center /
+        contain;
+    }
+  }
 }
 
 /************************\

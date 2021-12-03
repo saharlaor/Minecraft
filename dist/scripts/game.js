@@ -3,6 +3,8 @@ import {
   Tool,
   setActiveTool,
   getActiveTool,
+  getInventory,
+  setInventory,
 } from "./tools.js";
 
 const basicWorld = [
@@ -74,8 +76,10 @@ function generateWorld() {
           if (activeTool.toolUsage.includes(blockType)) {
             if (activeTool.toolType === toolTypeEnum.inventory) {
               tempEl.type = getInventory();
+              setInventory(BLOCK_TYPES.empty);
             } else {
               gameMatrix[y][x].type = BLOCK_TYPES.empty;
+              setInventory(blockType);
             }
           } else {
           }
