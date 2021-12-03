@@ -95,8 +95,8 @@ function generateWorld() {
               gameMatrix[y][x].type = getInventory();
               setInventory(BLOCK_TYPES.empty);
             } else {
+              setInventory(gameMatrix[y][x].type);
               gameMatrix[y][x].type = BLOCK_TYPES.empty;
-              setInventory(blockType);
             }
           } else {
           }
