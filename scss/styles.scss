@@ -91,6 +91,9 @@ main {
         contain;
     }
   }
+  &.active {
+    box-shadow: inset 2px 1px 0 #abd, inset -2px -3px 0 #78c;
+  }
 }
 
 /************************\

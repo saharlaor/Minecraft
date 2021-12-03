@@ -71,6 +71,8 @@ main {
     background: url(../assets/textures/Stone.png) no-repeat center center/contain; }
   .inventory[data-contents="wood"] {
     background: url(../assets/textures/Wood.png) no-repeat center center/contain; }
+  .inventory.active {
+    box-shadow: inset 2px 1px 0 #abd, inset -2px -3px 0 #78c; }
 
 /************************\
 ****** Title Screen ******

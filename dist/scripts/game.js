@@ -73,9 +73,9 @@ function generateWorld() {
       tempEl.addEventListener("click", (e) => {
         const activeTool = getActiveTool();
         if (activeTool) {
-          if (activeTool.toolUsage.includes(blockType)) {
+          if (activeTool.toolUsage.includes(gameMatrix[y][x].type)) {
             if (activeTool.toolType === toolTypeEnum.inventory) {
-              tempEl.type = getInventory();
+              gameMatrix[y][x].type = getInventory();
               setInventory(BLOCK_TYPES.empty);
             } else {
               gameMatrix[y][x].type = BLOCK_TYPES.empty;
