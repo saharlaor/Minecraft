@@ -168,7 +168,6 @@ main {
 }
 
 .block {
-  margin: -0.4px;
   &:hover {
     border: 1px solid #fff;
     border-right-width: 2px;
@@ -180,7 +179,7 @@ main {
         no-repeat
         center
         center /
-        contain;
+        cover;
     }
     @if $type == "empty" {
       background: transparent;
