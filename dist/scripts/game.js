@@ -107,8 +107,10 @@ function blockClick(block) {
   if (activeTool) {
     if (activeTool.toolUsage.includes(block.type)) {
       if (activeTool.toolType === TOOL_TYPE_ENUM.inventory) {
-        block.type = getInventory();
-        setInventory(BLOCK_TYPES.empty);
+        if (block.checkPhysics(gameMatrix)) {
+          block.type = getInventory();
+          setInventory(BLOCK_TYPES.empty);
+        }
       } else {
         setInventory(block.type);
         block.type = BLOCK_TYPES.empty;
