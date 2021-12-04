@@ -70,6 +70,8 @@ main {
     background: url(../assets/textures/GrassBlock.png) no-repeat center center/contain; }
   .inventory[data-contents="leaves"] {
     background: url(../assets/textures/Leaves.png) no-repeat center center/contain; }
+  .inventory[data-contents="sand"] {
+    background: url(../assets/textures/Sand.png) no-repeat center center/contain; }
   .inventory[data-contents="stone"] {
     background: url(../assets/textures/Stone.png) no-repeat center center/contain; }
   .inventory[data-contents="wood"] {
@@ -151,6 +153,9 @@ main {
 
 .block[data-contents="leaves"] {
   background: url(../assets/textures/Leaves.png) no-repeat center center/cover; }
+
+.block[data-contents="sand"] {
+  background: url(../assets/textures/Sand.png) no-repeat center center/cover; }
 
 .block[data-contents="stone"] {
   background: url(../assets/textures/Stone.png) no-repeat center center/cover; }

@@ -3,6 +3,7 @@ export const BLOCK_TYPES = {
   empty: "empty",
   grass: "grass",
   leaves: "leaves",
+  sand: "sand",
   stone: "stone",
   wood: "wood",
 };
