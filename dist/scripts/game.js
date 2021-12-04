@@ -67,6 +67,7 @@ const tools = [...document.querySelectorAll("[data-tool]")].reduce(
   },
   {}
 );
+const resetBtn = document.querySelector(".reset");
 
 // Event listeners for tool clicks
 Object.values(tools).forEach((tool) =>
@@ -130,6 +131,7 @@ function blockClick(block) {
  * @since  1.0.0
  **/
 function generateWorld() {
+  worldEl.innerHTML = "";
   for (let y = 0; y < gameMatrix.length; y++) {
     for (let x = 0; x < gameMatrix[y].length; x++) {
       appendNewBlock(x, y);
@@ -142,6 +144,24 @@ function generateWorld() {
 }
 
 /**
+ * Hide the title screen when clicking the start button.
+ *
+ * Add the "hidden" class to the title screen element and set its display to none.
+ *
+ * @since  1.0.0
+ *
+ * @param {Event}   e           The click event.
+ **/
+function startBtnClick(e) {
+  const titleScreenEl = document.querySelector("#title-screen");
+  titleScreenEl.classList.add("hidden");
+  setTimeout(() => {
+    titleScreenEl.style.display = "none";
+  }, 800);
+  e.target.removeEventListener("click", startBtnClick);
+}
+
+/**
  * Setup the game.
  *
  * Start a new game, generate the world's elements and matrix,
@@ -151,13 +171,13 @@ function generateWorld() {
  **/
 function gameStart() {
   generateWorld(); // Function that fills matrix array with block Object
-  document.querySelector("#start-btn").addEventListener("click", (e) => {
-    const titleScreenEl = document.querySelector("#title-screen");
-    titleScreenEl.classList.add("hidden");
-    setTimeout(() => {
-      titleScreenEl.style.display = "none";
-    }, 800);
-  });
+  document.querySelector("#start-btn").addEventListener("click", startBtnClick);
+  document.querySelector("#title-screen").classList.remove("hidden");
+  document.querySelector("#title-screen").style.display = "";
+  setInventory(BLOCK_TYPES.empty);
 }
+
+// Event listener for reset
+resetBtn.addEventListener("click", (e) => gameStart());
 
 gameStart();

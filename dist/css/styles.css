@@ -79,6 +79,20 @@ main {
   .inventory.error {
     box-shadow: inset 2px 1px 0 #d99, inset -2px -3px 0 #b66; }
 
+.reset {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  padding: 0; }
+  .reset img {
+    height: 100%;
+    object-position: -2px;
+    transform: rotate(90deg);
+    transition: all 0.1s 0s ease-out; }
+    .reset img:hover {
+      object-position: -1px;
+      transform: rotate(45deg); }
+
 /************************\
 ****** Title Screen ******
 \************************/
