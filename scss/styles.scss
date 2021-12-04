@@ -166,7 +166,7 @@ main {
 #game__container {
   @include flex-center;
   width: 100%;
-  background: rgba(255, 255, 255, 70%);
+  background: none;
 }
 
 .game {
@@ -203,7 +203,7 @@ main {
 /*************************\
 ****** Media Queries ******
 \*************************/
-@media (max-width: 1000px) {
+@media (max-width: 1170px) {
   body {
     flex-direction: column-reverse;
   }

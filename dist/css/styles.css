@@ -139,7 +139,7 @@ main {
   justify-content: center;
   align-items: center;
   width: 100%;
-  background: white; }
+  background: none; }
 
 .game {
   display: grid;
@@ -177,7 +177,7 @@ main {
 /*************************\
 ****** Media Queries ******
 \*************************/
-@media (max-width: 1000px) {
+@media (max-width: 1170px) {
   body {
     flex-direction: column-reverse; }
   #sidebar {
