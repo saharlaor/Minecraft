@@ -10,7 +10,17 @@ body {
   position: relative;
   height: 100vh;
   width: 100vw;
-  margin: 0; }
+  margin: 0;
+  overflow: hidden; }
+  body::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: url(../assets/img/Title-Menu-Background.png);
+    background-repeat: repeat;
+    opacity: 0.4;
+    z-index: -1; }
 
 main {
   position: absolute;
@@ -110,7 +120,8 @@ main {
   height: 100%;
   width: 100%;
   background: url(../assets/img/Title-Menu-Background.png);
-  background-repeat: repeat; }
+  background-repeat: repeat;
+  z-index: 1; }
   #title-screen.hidden {
     transform: scale(25);
     opacity: 0;
@@ -162,3 +173,37 @@ main {
 
 .block[data-contents="wood"] {
   background: url(../assets/textures/Wood.png) no-repeat center center/cover; }
+
+/*************************\
+****** Media Queries ******
+\*************************/
+@media (max-width: 1000px) {
+  body {
+    flex-direction: column-reverse; }
+  #sidebar {
+    flex-direction: row;
+    position: static;
+    float: none;
+    z-index: 1;
+    height: auto;
+    width: 100%; }
+  .tool {
+    padding: 1.6vw; }
+    .tool img {
+      height: 8vw; }
+  .reset,
+  .inventory {
+    margin: 0;
+    height: 5vw;
+    width: 5vw; }
+  main {
+    position: static;
+    height: 100vmin;
+    width: 100vmin; }
+  #title-screen h1 {
+    height: 12vw;
+    width: 60vw; }
+  .mc-btn {
+    font-size: 4vw; }
+  .game {
+    max-height: 100vw; } }
