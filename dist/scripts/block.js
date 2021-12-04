@@ -46,4 +46,16 @@ export const Block = class {
     console.log(adjacentBlocks);
     return adjacentBlocks.some((block) => block.type !== BLOCK_TYPES.empty);
   }
+
+  dropBlock(matrix) {
+    const lowerBlock = matrix[this.y + 1][this.x];
+    if (lowerBlock.type !== BLOCK_TYPES.empty) {
+      return;
+    }
+    setTimeout(() => {
+      lowerBlock.type = this.type;
+      this.type = BLOCK_TYPES.empty;
+      lowerBlock.dropBlock(matrix);
+    }, 1000);
+  }
 };

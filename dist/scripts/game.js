@@ -95,6 +95,25 @@ function appendNewBlock(x, y) {
 }
 
 /**
+ * Drop sand blocks in the column above a block.
+ *
+ * Check the column above a block and drop the sand blocks directly above it.
+ *
+ * @since  1.0.0
+ *
+ * @param {Block}   block           the extracted block.
+ **/
+function checkFallingBlocks(block) {
+  const aboveBlock = gameMatrix[block.y - 1][block.x];
+  if (aboveBlock.type === BLOCK_TYPES.sand) {
+    aboveBlock.dropBlock(gameMatrix);
+    setTimeout(() => {
+      checkFallingBlocks(aboveBlock);
+    }, 1000);
+  }
+}
+
+/**
  * function for event listener of a single block object.
  *
  * Change the type of the clicked block if the click was valid,
@@ -111,11 +130,15 @@ function blockClick(block) {
       if (activeTool.toolType === TOOL_TYPE_ENUM.inventory) {
         if (block.checkPhysics(gameMatrix)) {
           block.type = getInventory();
+          if (block.type === BLOCK_TYPES.sand) {
+            block.dropBlock(gameMatrix);
+          }
           setInventory(BLOCK_TYPES.empty);
         }
       } else {
         setInventory(block.type);
         block.type = BLOCK_TYPES.empty;
+        checkFallingBlocks(block);
       }
     } else {
       activeTool.indicateError();
