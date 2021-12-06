@@ -52,7 +52,7 @@ export const Block = class {
     if (lowerBlock.type !== BLOCK_TYPES.empty) {
       return;
     }
-    let timeoutIds;
+    let timeoutIds = [];
     timeoutIds.push(
       setTimeout(() => {
         lowerBlock.type = this.type;

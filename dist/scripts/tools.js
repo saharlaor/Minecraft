@@ -1,3 +1,5 @@
+import { BLOCK_TYPES } from "./block.js";
+
 const TOOL_USAGE = {
   pickaxe: ["stone"],
   axe: ["wood", "leaves"],
@@ -9,7 +11,7 @@ const ACTIVE_TOOL_CLASS = "active";
 let activeTool = null;
 let currentInventory = {
   htmlEl: document.querySelector(`[data-tool=inventory]`),
-  contents: "empty",
+  contents: ["empty"],
 };
 
 export class Tool {
@@ -57,10 +59,16 @@ export function setActiveTool(active) {
 }
 
 export function getInventory() {
-  return currentInventory.contents;
+  return currentInventory.contents[0];
 }
 
 export function setInventory(blockType) {
-  currentInventory.contents = blockType;
-  currentInventory.htmlEl.dataset.contents = blockType;
+  if (blockType === BLOCK_TYPES.empty) {
+    currentInventory.contents.shift();
+    if (!currentInventory.contents.length)
+      currentInventory.contents.unshift(BLOCK_TYPES.empty);
+  } else {
+    currentInventory.contents.unshift(blockType);
+  }
+  currentInventory.htmlEl.dataset.contents = currentInventory.contents[0];
 }
