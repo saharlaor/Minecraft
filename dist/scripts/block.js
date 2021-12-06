@@ -52,10 +52,14 @@ export const Block = class {
     if (lowerBlock.type !== BLOCK_TYPES.empty) {
       return;
     }
-    setTimeout(() => {
-      lowerBlock.type = this.type;
-      this.type = BLOCK_TYPES.empty;
-      lowerBlock.dropBlock(matrix);
-    }, 1000);
+    let timeoutIds;
+    timeoutIds.push(
+      setTimeout(() => {
+        lowerBlock.type = this.type;
+        this.type = BLOCK_TYPES.empty;
+        timeoutIds.push(...lowerBlock.dropBlock(matrix));
+      }, 1000)
+    );
+    return timeoutIds;
   }
 };

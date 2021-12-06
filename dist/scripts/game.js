@@ -116,6 +116,8 @@ const tools = [...document.querySelectorAll("[data-tool]")].reduce(
 );
 const resetBtn = document.querySelector(".reset");
 
+let droppingBlocks = [];
+
 // Event listeners for tool clicks
 Object.values(tools).forEach((tool) =>
   tool.htmlEl.addEventListener("click", (_) => setActiveTool(tool))
@@ -153,7 +155,7 @@ function appendNewBlock(x, y, worldTemplate) {
 function checkFallingBlocks(block) {
   const aboveBlock = gameMatrix[block.y - 1][block.x];
   if (aboveBlock.type === BLOCK_TYPES.sand) {
-    aboveBlock.dropBlock(gameMatrix);
+    droppingBlocks.push(aboveBlock.dropBlock(gameMatrix));
     setTimeout(() => {
       checkFallingBlocks(aboveBlock);
     }, 1000);
@@ -178,7 +180,7 @@ function blockClick(block) {
         if (block.checkPhysics(gameMatrix)) {
           block.type = getInventory();
           if (block.type === BLOCK_TYPES.sand) {
-            block.dropBlock(gameMatrix);
+            droppingBlocks.push(block.dropBlock(gameMatrix));
           }
           setInventory(BLOCK_TYPES.empty);
         }
@@ -236,7 +238,8 @@ function startBtnClick(e) {
     .reverse()
     .forEach((row) => {
       row.forEach((block) => {
-        if (block.type === BLOCK_TYPES.sand) block.dropBlock(gameMatrix);
+        if (block.type === BLOCK_TYPES.sand)
+          droppingBlocks.push(...block.dropBlock(gameMatrix));
       });
     });
 }
@@ -250,6 +253,9 @@ function startBtnClick(e) {
  * @since  1.0.0
  **/
 function gameStart() {
+  droppingBlocks.forEach((id) => {
+    clearTimeout(id);
+  });
   generateWorld(); // Function that fills matrix array with block Object
   document.querySelector("#start-btn").addEventListener("click", startBtnClick);
   document.querySelector("#title-screen").classList.remove("hidden");
